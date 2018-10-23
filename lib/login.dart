@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+
 import 'colors.dart';
 
 class PrimaryColorOverride extends StatelessWidget {
@@ -31,13 +32,13 @@ class PrimaryColorOverride extends StatelessWidget {
   }
 }
 
+// << Login Page Widget >>
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => new _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // TODO: Add text editing controllers (101)
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -83,14 +84,12 @@ class _LoginPageState extends State<LoginPage> {
             ),
             ButtonBar(
               children: <Widget>[
-                // TODO: Add buttons (101)
                 FlatButton(
                   child: Text('CANCEL'),
                   shape: BeveledRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(7.0)),
                   ),
                   onPressed: () {
-                    //TODO: Clear the text fields (101)
                     _usernameController.clear();
                     _passwordController.clear();
                   },
@@ -102,7 +101,6 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.all(Radius.circular(7.0)),
                   ),
                   onPressed: () {
-                    // TODO: Show the next page (101)
                     Navigator.pop(context);
                   },
                 ),
