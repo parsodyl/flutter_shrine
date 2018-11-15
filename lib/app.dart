@@ -24,7 +24,6 @@ import 'supplemental/cut_corners_border.dart';
 
 // << Custom Theme Stuff >>
 final ThemeData _kShrineTheme = _buildShrineTheme();
-
 ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
@@ -75,7 +74,6 @@ class ShrineApp extends StatefulWidget {
     if (settings.name != '/login') {
       return null;
     }
-
     return MaterialPageRoute<void>(
       settings: settings,
       builder: (BuildContext context) => LoginPage(),
@@ -87,6 +85,7 @@ class ShrineApp extends StatefulWidget {
 class _ShrineAppState extends State<ShrineApp> {
   Category _currentCategory = Category.all;
 
+  // manage category state
   void _onCategoryTap(Category category) {
     setState(() {
       _currentCategory = category;

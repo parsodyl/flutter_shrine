@@ -19,6 +19,7 @@ import 'model/data.dart';
 import 'model/product.dart';
 import 'supplemental/asymmetric_view.dart';
 
+// << Home Page Widget >>
 class HomePage extends StatelessWidget {
   final Category category;
 
@@ -29,44 +30,41 @@ class HomePage extends StatelessWidget {
     return AsymmetricView(products: getProducts(category));
   }
 
-  //TODO: Make a collection of cards (102)
+  // ignore: unused_element
   List<Card> _buildGridCards(BuildContext context) {
+    // manage products
     List<Product> products = getProducts(Category.all);
-
     if (products == null || products.isEmpty) {
       return const <Card>[];
     }
 
+    // manage theme
     final ThemeData theme = Theme.of(context);
     final NumberFormat formatter = NumberFormat.simpleCurrency(
         locale: Localizations.localeOf(context).toString());
 
+    // main widget builder
     return products.map((product) {
       return Card(
-        //TODO: Adjust card heights (103)
         elevation: 0.0,
         child: Column(
-          //TODO: Center items on the card (103)
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             AspectRatio(
               aspectRatio: 18 / 11,
               child: Image.asset(
-                  product.assetName,
-                  package: product.assetPackage,
-                  //TODO: Adjust the box size (102)
-                  fit: BoxFit.fitWidth
+                product.assetName,
+                package: product.assetPackage,
+                fit: BoxFit.fitWidth,
               ),
             ),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
                 child: Column(
-                  //TODO: Align labels to the bottom and center (103)
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    //TODO: Handle overflowing labels (103)
                     Text(
                       product == null ? '' : product.name,
                       style: theme.textTheme.button,
