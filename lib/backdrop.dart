@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+
 import 'login.dart';
 import 'model/product.dart';
 
 const double _kFlingVelocity = 2.0;
 
+// << Backdrop Widget >>
 class Backdrop extends StatefulWidget {
   final Category currentCategory;
   final Widget frontLayer;
@@ -26,44 +28,6 @@ class Backdrop extends StatefulWidget {
 
   @override
   _BackdropState createState() => _BackdropState();
-}
-
-class _FrontLayer extends StatelessWidget {
-  const _FrontLayer({
-    Key key,
-    this.onTap,
-    this.child,
-  }) : super(key: key);
-
-  final VoidCallback onTap;
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      elevation: 16.0,
-      shape: BeveledRectangleBorder(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(46.0)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: onTap,
-            child: Container(
-              height: 40.0,
-              alignment: AlignmentDirectional.centerStart,
-            ),
-          ),
-          Expanded(
-            child: child,
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 class _BackdropState extends State<Backdrop>
@@ -174,6 +138,46 @@ class _BackdropState extends State<Backdrop>
   }
 }
 
+// << Front layer Widget >>
+class _FrontLayer extends StatelessWidget {
+  const _FrontLayer({
+    Key key,
+    this.onTap,
+    this.child,
+  }) : super(key: key);
+
+  final VoidCallback onTap;
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      elevation: 16.0,
+      shape: BeveledRectangleBorder(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(46.0)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: onTap,
+            child: Container(
+              height: 40.0,
+              alignment: AlignmentDirectional.centerStart,
+            ),
+          ),
+          Expanded(
+            child: child,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// << Backdrop Title Widget >>
 class _BackdropTitle extends AnimatedWidget {
   final Function onPress;
   final Widget frontTitle;
@@ -215,7 +219,8 @@ class _BackdropTitle extends AnimatedWidget {
                   end: Offset(1.0, 0.0),
                 ).evaluate(animation),
                 child: ImageIcon(AssetImage('assets/diamond.png')),
-              )]),
+              )
+            ]),
           ),
         ),
         // Here, we do a custom cross fade between backTitle and frontTitle.
